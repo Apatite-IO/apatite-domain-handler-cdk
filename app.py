@@ -14,11 +14,11 @@ load_dotenv(dotenv_path = PROJECT_ENV_FILE, override = True)
 
 import aws_cdk as cdk
 from config.setup_stack import setup_stack
-from project_name_cdk.project_name_cdk import cdk_ProjectName
+from cdk_apatiteDomainHandler.cdk_apatiteDomainHandler import cdk_apatiteDomainHandler
 
 env = os.getenv("ENVIRONMENT")
 
 app = cdk.App()
-setup_stack(env, app, "PROJECT_NAME", cdk_ProjectName)
+setup_stack(env, app, "PROJECT_NAME", cdk_apatiteDomainHandler)
 
 app.synth()
