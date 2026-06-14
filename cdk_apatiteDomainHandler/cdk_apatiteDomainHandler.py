@@ -70,9 +70,9 @@ class cdk_apatiteDomainHandler(Stack):
         # Each site gets its own distribution pointing to a separate S3 bucket.
         # S3 website endpoints only support HTTP on the origin side.
         sites = [
-            ("Production",  domain,                         config.s3_website_production_bucket_name),
-            ("WebsiteDev",  f"website-dev.{domain}",        config.s3_website_dev_bucket_name),
-            ("WebsiteTest", f"website-test.{domain}",       config.s3_website_test_bucket_name),
+            ("Production",  domain,                         config.s3_website_production_bucket_name), # production website bucket
+            ("WebsiteDev",  f"website-dev.{domain}",        config.s3_website_dev_bucket_name), # non prod website bucket
+            ("WebsiteTest", f"website-test.{domain}",       config.s3_website_test_bucket_name), # test website bucket -> Alternative Website Solution
         ]
 
         for name, site_domain, bucket_name in sites:
@@ -97,5 +97,5 @@ class cdk_apatiteDomainHandler(Stack):
                 record_name=site_domain,
                 target=route53.RecordTarget.from_alias(
                     route53_targets.CloudFrontTarget(distribution)
-                ),
+                )
             )
